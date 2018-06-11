@@ -1,8 +1,8 @@
 from grafana_client import cli
 
-class DatasourceCreate(cli.Command):
+class DatasourceCreate(cli.Shower):
     def get_parser(self, prog_name):
-        parser = super(DatasourceShow, self).get_parser(prog_name)
+        parser = super(DatasourceCreate, self).get_parser(prog_name)
 #        parser.add_argument('body',
 #                            type=json.loads,
 #                            help='Create body')
@@ -13,9 +13,9 @@ class DatasourceCreate(cli.Command):
         columns = []
         return self.format_output(columns, suites)
 
-class DatasourceUpdate(cli.Command):
+class DatasourceUpdate(cli.Shower):
     def get_parser(self, prog_name):
-        parser = super(DatasourceShow, self).get_parser(prog_name)
+        parser = super(DatasourceUpdate, self).get_parser(prog_name)
 #        parser.add_argument('name',
 #                            type=str,
 #                            help='Update resource by name')
@@ -31,7 +31,7 @@ class DatasourceUpdate(cli.Command):
 
 class DatasourceShow(cli.Shower):
     def get_parser(self, prog_name):
-        parser = super(DatasourceList, self).get_parser(prog_name)
+        parser = super(DatasourceShow, self).get_parser(prog_name)
 #        parser.add_argument('name',
 #                            help='Show Resource by name')
         return parser
@@ -53,7 +53,7 @@ class DatasourceList(cli.Lister):
 
 class DatasourceDelete(cli.Command):
     def get_parser(self, prog_name):
-        parser = super(DatasourceShow, self).get_parser(prog_name)
+        parser = super(DatasourceDelete, self).get_parser(prog_name)
 #        parser.add_argument('name',
 #                            type=str,
 #                            help='Delete resource by name')

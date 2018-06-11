@@ -1,8 +1,8 @@
 from grafana_client import cli
 
-class FolderCreate(cli.Command):
+class FolderCreate(cli.Shower):
     def get_parser(self, prog_name):
-        parser = super(FolderShow, self).get_parser(prog_name)
+        parser = super(FolderCreate, self).get_parser(prog_name)
 #        parser.add_argument('body',
 #                            type=json.loads,
 #                            help='Create body')
@@ -13,9 +13,9 @@ class FolderCreate(cli.Command):
         columns = []
         return self.format_output(columns, suites)
 
-class FolderUpdate(cli.Command):
+class FolderUpdate(cli.Shower):
     def get_parser(self, prog_name):
-        parser = super(FolderShow, self).get_parser(prog_name)
+        parser = super(FolderUpdate, self).get_parser(prog_name)
 #        parser.add_argument('name',
 #                            type=str,
 #                            help='Update resource by name')
@@ -31,7 +31,7 @@ class FolderUpdate(cli.Command):
 
 class FolderShow(cli.Shower):
     def get_parser(self, prog_name):
-        parser = super(FolderList, self).get_parser(prog_name)
+        parser = super(FolderShow, self).get_parser(prog_name)
 #        parser.add_argument('name',
 #                            help='Show Resource by name')
         return parser
@@ -53,7 +53,7 @@ class FolderList(cli.Lister):
 
 class FolderDelete(cli.Command):
     def get_parser(self, prog_name):
-        parser = super(FolderShow, self).get_parser(prog_name)
+        parser = super(FolderDelete, self).get_parser(prog_name)
 #        parser.add_argument('name',
 #                            type=str,
 #                            help='Delete resource by name')

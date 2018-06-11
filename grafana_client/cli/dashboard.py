@@ -1,8 +1,8 @@
 from grafana_client import cli
 
-class DashboardCreate(cli.Command):
+class DashboardCreate(cli.Shower):
     def get_parser(self, prog_name):
-        parser = super(DashboardShow, self).get_parser(prog_name)
+        parser = super(DashboardCreate, self).get_parser(prog_name)
 #        parser.add_argument('body',
 #                            type=json.loads,
 #                            help='Create body')
@@ -13,9 +13,9 @@ class DashboardCreate(cli.Command):
         columns = []
         return self.format_output(columns, suites)
 
-class DashboardUpdate(cli.Command):
+class DashboardUpdate(cli.Shower):
     def get_parser(self, prog_name):
-        parser = super(DashboardShow, self).get_parser(prog_name)
+        parser = super(DashboardUpdate, self).get_parser(prog_name)
 #        parser.add_argument('name',
 #                            type=str,
 #                            help='Update resource by name')
@@ -31,7 +31,7 @@ class DashboardUpdate(cli.Command):
 
 class DashboardShow(cli.Shower):
     def get_parser(self, prog_name):
-        parser = super(DashboardList, self).get_parser(prog_name)
+        parser = super(DashboardShow, self).get_parser(prog_name)
 #        parser.add_argument('name',
 #                            help='Show Resource by name')
         return parser
@@ -53,7 +53,7 @@ class DashboardList(cli.Lister):
 
 class DashboardDelete(cli.Command):
     def get_parser(self, prog_name):
-        parser = super(DashboardShow, self).get_parser(prog_name)
+        parser = super(DashboardDelete, self).get_parser(prog_name)
 #        parser.add_argument('name',
 #                            type=str,
 #                            help='Delete resource by name')

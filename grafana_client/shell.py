@@ -7,10 +7,10 @@ from cliff import commandmanager
 class GrafanaclientShell(app.App):
 
     def __init__(self):
-        super(CliffGeneratorShell, self).__init__(
-            description='docker-trigger cli',
+        super(GrafanaclientShell, self).__init__(
+            description='grafana-client cli',
             version='0.1',
-            command_manager=commandmanager.CommandManager('cliffg'),
+            command_manager=commandmanager.CommandManager('subs'),
             deferred_help=True,
         )
 
