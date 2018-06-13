@@ -17,7 +17,7 @@ if __name__ == '__main__':
     data = None
     if args.method == 'post':
         url = db
-        with open('./conf/{}.json'.format(args.data)) as fd:
+        with open('./templates/{}.json'.format(args.data)) as fd:
             data = json.load(fd)
     elif args.method == 'get':
         url = os.path.join(db_uid, args.data)
