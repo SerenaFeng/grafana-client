@@ -1,6 +1,7 @@
-from grafana_client import cli
+from grafana_client.utils import command
 
-class FolderCreate(cli.Shower):
+
+class FolderCreate(command.ShowOne):
     def get_parser(self, prog_name):
         parser = super(FolderCreate, self).get_parser(prog_name)
 #        parser.add_argument('body',
@@ -9,27 +10,10 @@ class FolderCreate(cli.Shower):
         return parser
 
     def take_action(self, parsed_args):
-        suites = []
-        columns = []
-        return self.format_output(columns, suites)
+        return self.format_output({})
 
-class FolderUpdate(cli.Shower):
-    def get_parser(self, prog_name):
-        parser = super(FolderUpdate, self).get_parser(prog_name)
-#        parser.add_argument('name',
-#                            type=str,
-#                            help='Update resource by name')
-#        parser.add_argument('body',
-#                            type=json.loads,
-#                            help='Update body')
-        return parser
 
-    def take_action(self, parsed_args):
-        suites = []
-        columns = []
-        return self.format_output(columns, suites)
-
-class FolderShow(cli.Shower):
+class FolderShow(command.ShowOne):
     def get_parser(self, prog_name):
         parser = super(FolderShow, self).get_parser(prog_name)
 #        parser.add_argument('name',
@@ -37,11 +21,10 @@ class FolderShow(cli.Shower):
         return parser
 
     def take_action(self, parsed_args):
-        suites = []
-        columns = []
-        return self.format_output(columns, suites)
+        return self.format_output({})
 
-class FolderList(cli.Lister):
+
+class FolderList(command.Lister):
     def get_parser(self, prog_name):
         parser = super(FolderList, self).get_parser(prog_name)
         return parser
@@ -51,7 +34,8 @@ class FolderList(cli.Lister):
         columns = []
         return self.format_output(columns, suites)
 
-class FolderDelete(cli.Command):
+
+class FolderDelete(command.Command):
     def get_parser(self, prog_name):
         parser = super(FolderDelete, self).get_parser(prog_name)
 #        parser.add_argument('name',

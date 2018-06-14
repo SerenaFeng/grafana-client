@@ -1,6 +1,7 @@
-from grafana_client import cli
+from grafana_client.utils import command
 
-class DatasourceCreate(cli.Shower):
+
+class DatasourceCreate(command.ShowOne):
     def get_parser(self, prog_name):
         parser = super(DatasourceCreate, self).get_parser(prog_name)
 #        parser.add_argument('body',
@@ -9,27 +10,10 @@ class DatasourceCreate(cli.Shower):
         return parser
 
     def take_action(self, parsed_args):
-        suites = []
-        columns = []
-        return self.format_output(columns, suites)
+        return self.format_output({})
 
-class DatasourceUpdate(cli.Shower):
-    def get_parser(self, prog_name):
-        parser = super(DatasourceUpdate, self).get_parser(prog_name)
-#        parser.add_argument('name',
-#                            type=str,
-#                            help='Update resource by name')
-#        parser.add_argument('body',
-#                            type=json.loads,
-#                            help='Update body')
-        return parser
 
-    def take_action(self, parsed_args):
-        suites = []
-        columns = []
-        return self.format_output(columns, suites)
-
-class DatasourceShow(cli.Shower):
+class DatasourceShow(command.ShowOne):
     def get_parser(self, prog_name):
         parser = super(DatasourceShow, self).get_parser(prog_name)
 #        parser.add_argument('name',
@@ -37,11 +21,10 @@ class DatasourceShow(cli.Shower):
         return parser
 
     def take_action(self, parsed_args):
-        suites = []
-        columns = []
-        return self.format_output(columns, suites)
+        return self.format_output({})
 
-class DatasourceList(cli.Lister):
+
+class DatasourceList(command.Lister):
     def get_parser(self, prog_name):
         parser = super(DatasourceList, self).get_parser(prog_name)
         return parser
@@ -51,7 +34,8 @@ class DatasourceList(cli.Lister):
         columns = []
         return self.format_output(columns, suites)
 
-class DatasourceDelete(cli.Command):
+
+class DatasourceDelete(command.Command):
     def get_parser(self, prog_name):
         parser = super(DatasourceDelete, self).get_parser(prog_name)
 #        parser.add_argument('name',
