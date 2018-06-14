@@ -25,8 +25,7 @@
               {
                 "dateFormat": "YYYY-MM-DD HH:mm:ss",
                 "pattern": "Time",
-                "type": "date",
-                "unit": "short"
+                "type": "date"
               },
               {
                 "colorMode": "cell",
