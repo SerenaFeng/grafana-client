@@ -8,6 +8,6 @@ usage
 
 .. code-block::
 
-  grafana-client -p path/
+  grafana-client dashboard create -p path/
 
 
