@@ -7,6 +7,7 @@ usage
 -------
 
 .. code-block::
+
   grafana-client -p path/
 
 
