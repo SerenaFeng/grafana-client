@@ -2,12 +2,20 @@
 
 - template:
     name: testdb
-    uid: testdb
+    uid: '{uid}'
     title: '{label} Dashboard'
     tags: '{tags}'
     rows:
-      - row_macro:
+      - row_text:
           title: '{label}'
           height: '{height}'
           span: 12
           context: This is a complex text test
+      - row_multi_targets:
+          title: '{label}'
+          height: '400px'
+          datasource: '{datasource}'
+      - row_singlestat:
+          title: '{label}'
+          height: '300px'
+          datasource: '{datasource}'

@@ -1,0 +1,20 @@
+{% import 'helper.j2' as helper %}
+
+{
+  "title": "{{ conf.title }}",
+  "type": "table",
+  "transform": "{{ conf.transform }}",
+  "datasource": "{{ conf.datasource }}",
+  "fontSize": "100%",
+  "scroll": {{ conf.scroll | default(true)}},
+  "showHeader": {{ conf.showHeader | default(true)}},
+  "span": {{ conf.span }},
+  "styles": [
+    {
+      "dateFormat": "{{ conf.dateFormat | default("YYYY-MM-DD HH:mm:ss")}}",
+      "pattern": "Time",
+      "type": "date"
+    }
+  ],
+{{ helper.targets(conf.targets) }}
+}

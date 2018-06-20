@@ -7,5 +7,5 @@
     "timezone": "browser"
   },
   "folderId": 12,
-  "overwrite": false
+  "overwrite": true
 }

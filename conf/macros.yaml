@@ -10,12 +10,101 @@
         context: '{context}'
 
 - macro:
-    name: row_macro
+    name: table_panel
+    panels:
+      - title: '{title} Table'
+        type: table
+        datasource: '{datasource}'
+        span: '{width}'
+        transform: timeseries_to_columns
+        targets:
+          - target: upper_25
+            type: timeserie
+          - target: upper_50
+            type: timeserie
+
+- macro:
+    name: graph_panel
+    panels:
+      - title: '{title} Graph'
+        type: graph
+        datasource: '{datasource}'
+        span: '{width}'
+        bars: false
+        lines: true
+        points: false
+        targets:
+          - target: upper_25
+            type: timeserie
+          - target: upper_50
+            type: timeserie
+
+- macro:
+    name: singlestat_panel
+    panels:
+      - title: '{title} SingleStat'
+        type: singlestat
+        datasource: '{datasource}'
+        span: '{width}'
+        thresholds: '{thresholds}'
+        format: '{format}'
+        valueName: '{valueName}'
+        gaugeShow: true
+        maxValue: '{maxValue}'
+        minValue: '{minValue}'
+        targets:
+          - target: '{target}'
+            type: timeserie
+
+- macro:
+    name: row_text
     rows:
-      - title: '{title} Row'
+      - title: '{title} Text'
         height: '{height}'
         panels:
           - text_html_panel:
               title: '{title}'
               span: '{span}'
               context: '{context}'
+
+- macro:
+    name: row_multi_targets
+    rows:
+      - title: '{title} Multi Targets'
+        height: '{height}'
+        panels:
+          - table_panel:
+              title: '{title}'
+              width: 6
+              datasource: '{datasource}'
+          - graph_panel:
+              title: '{title}'
+              width: 6
+              datasource: '{datasource}'
+
+- macro:
+    name: row_singlestat
+    rows:
+      - title: '{title} SingleStat'
+        height: '{height}'
+        panels:
+          - singlestat_panel:
+              title: '{title} upper_25'
+              width: 6
+              datasource: '{datasource}'
+              thresholds: 6,8
+              format: short
+              valueName: avg
+              maxValue: 10
+              minValue: 0
+              target: upper_25
+          - singlestat_panel:
+              title: '{title} upper_50'
+              width: 6
+              datasource: '{datasource}'
+              thresholds: 60,80
+              format: short
+              valueName: avg
+              maxValue: 100
+              minValue: 0
+              target: upper_50

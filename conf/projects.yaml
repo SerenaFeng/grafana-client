@@ -7,3 +7,5 @@
       - testdb:
           label: DBTest
           tags: [yaml, testcase]
+          datasource: fake
+          uid: '{name}'

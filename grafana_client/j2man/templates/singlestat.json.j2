@@ -1,0 +1,20 @@
+{% import 'helper.j2' as helper %}
+
+{
+  "title": "{{ conf.title }}",
+  "type": "singlestat",
+  "datasource": "{{ conf.datasource }}",
+  "span": {{ conf.span }},
+  "valueName": "{{ conf.valueName }}",
+  "format": "{{ conf.format }}",
+  "thresholds": "{{ conf.thresholds }}",
+  "mappingType": 1,
+  "gauge": {
+    "maxValue": {{ conf.maxValue }},
+    "minValue": {{ conf.minValue }},
+    "show": {{ conf.gaugeShow | default(false)}},
+    "thresholdLabels": {{ conf.thresholdLabels | default(false)}},
+    "thresholdMarkers": {{ conf.thresholdMarkers | default(true)}}
+  },
+{{ helper.targets(conf.targets) }}
+}

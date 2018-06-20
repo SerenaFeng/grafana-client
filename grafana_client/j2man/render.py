@@ -2,7 +2,7 @@ import ast
 import json
 import logging
 
-from jinja2 import Environment
+from jinja2 import Environment, TemplateNotFound
 from jinja2 import PackageLoader
 
 LOG = logging.getLogger(__file__)
@@ -14,12 +14,12 @@ class Render(object):
         self.env.filters['jsonify'] = json.dumps
 
     def render(self, db):
-        LOG.debug('begin to render dashboard: {}'.format(db))
+        LOG.debug('begin to render dashboard: {}'.format(json.dumps(db)))
         dashjson = self._render('dashboard.json.j2', db)
         if 'rows' in db:
-            dashjson['rows'] = list()
+            dashjson['dashboard']['rows'] = list()
             for row in db.get('rows'):
-                dashjson['rows'].append(self._render_row(row))
+                dashjson['dashboard']['rows'].append(self._render_row(row))
         return dashjson
 
     def _render_row(self, row):
@@ -33,14 +33,18 @@ class Render(object):
         return rowjson
 
     def _render_panel(self, panel):
-        LOG.debug('begin to render panel: {}'.format(panel))
+        LOG.debug('begin to render panel: {}'.format(json.dumps(panel)))
 
-        if panel.get('type') == 'text':
-            return self._render('text.json.j2', panel)
-        else:
-            raise Exception("Not Support Panel Type [{}]".format(
-                panel.get('type')))
+        tfile = '{}.json.j2'.format(panel.get('type'))
+        return self._render(tfile, panel)
 
     def _render(self, j2, data):
-        template = self.env.get_template(j2)
+        try:
+            template = self.env.get_template(j2)
+        except TemplateNotFound:
+            raise Exception('Unsupported template {}'.format(j2))
+        except Exception as err:
+            raise Exception('load template {} failed with {}'.format(j2, err))
+
         return ast.literal_eval(template.render(conf=data))
+

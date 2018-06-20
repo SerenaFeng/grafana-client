@@ -10,17 +10,15 @@ url = 'http://localhost:3000/api/dashboards/db'
 class DashboardCreate(command.Command):
     def get_parser(self, prog_name):
        parser = super(DashboardCreate, self).get_parser(prog_name)
-       parser.add_argument('-f', '--file',
-                           help='dashboard config file')
        parser.add_argument('-p', '--path',
                            help='dashboard config path')
        return parser
 
     def take_action(self, parsed_args):
         dbs = []
-        if parsed_args.file:
-            dbs = builder.Builder().build(parsed_args.file)
-        dbjsons = [{'dashboard': Render().render(db)} for db in dbs]
+        if parsed_args.path:
+            dbs = builder.Builder().build(parsed_args.path)
+        dbjsons = [Render().render(db) for db in dbs]
         results = filter(self._create, dbjsons)
         return results
 

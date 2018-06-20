@@ -1,0 +1,11 @@
+{% macro targets(ts) -%}
+  "targets": [
+{% for target in ts %}
+    {
+      "refId": "{{ "ABCDEFGHIJKLMNOPQRSTUVWXYZ"[loop.index0] }}",
+      "target": "{{ target.target }}",
+      "type": "{{ target.type }}"
+    }{% if not loop.last -%},{% endif -%}
+{% endfor %}
+  ]
+{%- endmacro %}

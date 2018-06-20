@@ -3,22 +3,16 @@ import json
 import ast
 
 
-env = Environment(loader=PackageLoader('grafana_client'))
+env = Environment(loader=PackageLoader('grafana_client',
+                                       package_path='j2man/templates'))
 env.filters['jsonify'] = json.dumps
 
-db = {
-    'uid': 'test',
-    'title': 'test',
-    'tags':['yaml', 'test']
-}
+render = [{"type": "timeserie", "target": "upper_25"},
+          {"type": "timeserie", "target": "upper_50"}]
 
-template = env.get_template('dashboard.json.j2')
-dashstr = template.render(conf=db)
-print type(dashstr), dashstr
-dashast = ast.literal_eval(dashstr)
-print type(dashast), dashast
+template = env.get_template('helper.j2')
+content = template.render(conf=render)
+print type(content), content
+dict_content = ast.literal_eval(content)
+print type(dict_content), dict_content
 
-dashjson = json.loads((dashstr))
-print type(dashjson), dashjson
-
-# print dash.get('uid')

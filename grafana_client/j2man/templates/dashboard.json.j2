@@ -1,7 +1,10 @@
 {
-  "uid": "{{ conf.uid }}",
-  "title": "{{ conf.title }}",
-  "tags": {{ conf.tags }},
-  "style": "dark",
-  "timezone": "browser"
+  "dashboard": {
+    "uid": "{{ conf.uid }}",
+    "title": "{{ conf.title }}",
+    "tags": {{ conf.tags }},
+    "style": "dark",
+    "timezone": "browser",
+  },
+  "overwrite": {{ conf.overwrite | default(true)}}
 }

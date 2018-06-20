@@ -1,0 +1,12 @@
+{% import 'helper.j2' as helper %}
+
+{
+  "title": "{{ conf.title }}",
+  "type": "graph",
+  "datasource": "{{ conf.datasource }}",
+  "span": {{ conf.span }},
+  "bars": {{ conf.bars }},
+  "lines": {{ conf.lines }},
+  "points": {{ conf.points }},
+{{ helper.targets(conf.targets) }}
+}
