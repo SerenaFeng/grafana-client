@@ -1,0 +1,13 @@
+---
+
+- template:
+    name: testdb
+    uid: testdb
+    title: '{label} Dashboard'
+    tags: '{tags}'
+    rows:
+      - row_macro:
+          title: '{label}'
+          height: '{height}'
+          span: 12
+          context: This is a complex text test

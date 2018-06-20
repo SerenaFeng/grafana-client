@@ -1,17 +1,32 @@
+import yaml
+
+from grafana_client.j2man.render import Render
 from grafana_client.utils import command
+from grafana_client.utils import rest
+from grafana_client.yamlman import builder
 
+url = 'http://localhost:3000/api/dashboards/db'
 
-class DashboardCreate(command.ShowOne):
+class DashboardCreate(command.Command):
     def get_parser(self, prog_name):
-        parser = super(DashboardCreate, self).get_parser(prog_name)
-#        parser.add_argument('body',
-#                            type=json.loads,
-#                            help='Create body')
-        return parser
+       parser = super(DashboardCreate, self).get_parser(prog_name)
+       parser.add_argument('-f', '--file',
+                           help='dashboard config file')
+       parser.add_argument('-p', '--path',
+                           help='dashboard config path')
+       return parser
 
     def take_action(self, parsed_args):
-        return self.format_output({})
+        dbs = []
+        if parsed_args.file:
+            dbs = builder.Builder().build(parsed_args.file)
+        dbjsons = [{'dashboard': Render().render(db)} for db in dbs]
+        results = filter(self._create, dbjsons)
+        return results
 
+    @staticmethod
+    def _create(dashboard):
+        return rest.RestManager().post(url, dashboard)
 
 class DashboardShow(command.ShowOne):
     def get_parser(self, prog_name):

@@ -8,8 +8,6 @@
     "timezone": "browser",
     "rows": [
       {
-        "collapse": false,
-        "editable": true,
         "height": "200px",
         "panels": [
           {

@@ -1,0 +1,9 @@
+---
+
+- project:
+    name: dbtest
+    description: This is dashboard test
+    objs:
+      - testdb:
+          label: DBTest
+          tags: [yaml, testcase]

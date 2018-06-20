@@ -1,0 +1,10 @@
+{
+  "title": "{{ conf.title }}",
+  "type": "text",
+{% if conf.height -%}
+  "height": "{{ conf.height }}",
+{% endif %}
+  "mode": "{{ conf.mode }}",
+  "span": {{ conf.span }},
+  "content": "{{ conf.context }}",
+}

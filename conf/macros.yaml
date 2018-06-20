@@ -1,0 +1,21 @@
+---
+
+- macro:
+    name: text_html_panel
+    panels:
+      - title: '{title} Text'
+        type: text
+        mode: html
+        span: '{span}'
+        context: '{context}'
+
+- macro:
+    name: row_macro
+    rows:
+      - title: '{title} Row'
+        height: '{height}'
+        panels:
+          - text_html_panel:
+              title: '{title}'
+              span: '{span}'
+              context: '{context}'
