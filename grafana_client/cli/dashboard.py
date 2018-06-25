@@ -1,11 +1,11 @@
-import yaml
-
 from grafana_client.j2man.render import Render
 from grafana_client.utils import command
 from grafana_client.utils import rest
+from grafana_client.utils import url_parse
 from grafana_client.yamlman import builder
 
-url = 'http://localhost:3000/api/dashboards/db'
+# url = 'http://localhost:3000/api'
+DB_URL = url_parse.resource_join('api/dashboards/db')
 
 class DashboardCreate(command.Command):
     def get_parser(self, prog_name):
@@ -24,7 +24,7 @@ class DashboardCreate(command.Command):
 
     @staticmethod
     def _create(dashboard):
-        return rest.RestManager().post(url, dashboard)
+        return rest.RestManager().post(DB_URL, dashboard)
 
 class DashboardShow(command.ShowOne):
     def get_parser(self, prog_name):

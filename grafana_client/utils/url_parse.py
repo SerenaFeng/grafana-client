@@ -18,7 +18,7 @@ def query_join(base, **queries):
 
 
 def resource_join(*url):
-    testapi_url = os.environ.get('testapi_url')
+    testapi_url = os.environ.get('GRAFANA_TESTAPI_URL')
     return path_join(testapi_url, *url)
 
 
