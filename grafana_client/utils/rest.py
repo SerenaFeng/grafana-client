@@ -1,6 +1,5 @@
 import httplib
 import json
-import os
 
 import requests
 
@@ -19,8 +18,6 @@ class RestManager(object):
                                                   headers=self.headers))
 
     def post(self, url, data):
-        if 'results' in url or 'deployresults' in url:
-            self.headers['X-Auth-Token'] = os.environ.get('testapi_token')
         return self._parse_response('Create',
                                     self._request('post', url,
                                                   data=json.dumps(data),

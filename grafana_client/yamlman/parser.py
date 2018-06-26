@@ -199,8 +199,7 @@ class YamlParser(object):
 
     def renderYaml(self):
         self.objs = [self._render_obj(obj)[1] for obj in self.objs]
-        print json.dumps(self.objs)
-        print yaml.dump(self.objs)
+        # print yaml.dump(self.objs)
 
     def _render_obj(self, obj):
         is_macro = False

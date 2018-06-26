@@ -42,8 +42,6 @@ class Builder(object):
                                "reference to avoid duplicating yaml "
                                "definitions." % (f, rpf))
 
-        print unique_files
-
         for in_file in unique_files:
             # use of ask-for-permissions instead of ask-for-forgiveness
             # performs better when low use cases.

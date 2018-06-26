@@ -5,7 +5,7 @@ import logging
 from jinja2 import Environment, TemplateNotFound
 from jinja2 import PackageLoader
 
-LOG = logging.getLogger(__file__)
+LOG = logging.getLogger(__name__)
 
 class Render(object):
     def __init__(self):
