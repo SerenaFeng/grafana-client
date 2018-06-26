@@ -1,11 +1,11 @@
-from grafana_client.j2man.render import Render
-from grafana_client.utils import command
-from grafana_client.utils import url_parse
-from grafana_client.yamlman import builder
 import yaml
 
-# url = 'http://localhost:3000/api'
-DB_URL = url_parse.resource_join('api/dashboards/db')
+from grafana_client.j2man.render import Render
+from grafana_client.utils import command
+from grafana_client.yamlman import builder
+
+DB_URL = 'api/dashboards/db'
+
 
 class DashboardCreate(command.Command):
     def get_parser(self, prog_name):
@@ -28,7 +28,7 @@ class DashboardCreate(command.Command):
         try:
             self.app.rest_manager.post(DB_URL, dbjson)
         except Exception as err:
-            self.log.warning('Dashboard [{}] create failed, due to {}'.format(
+            self.log.warning('Dashboard [{}] create failed, Reason: {}'.format(
                 dbjson.get('dashboard').get('title'),
                 err
             ))

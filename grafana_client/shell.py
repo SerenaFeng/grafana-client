@@ -5,6 +5,7 @@ from cliff import app
 from cliff import commandmanager
 
 from grafana_client.utils import rest
+from grafana_client.utils import config
 
 
 class GrafanaclientShell(app.App):
@@ -23,18 +24,15 @@ class GrafanaclientShell(app.App):
             description,
             version,
             argparse_kwargs)
-#        parser.add_argument('-u',
-#                            type=str,
-#                            help='Username for authentication')
-#        parser.add_argument('-p',
-#                            type=str,
-#                            help='Password for authentication')
+        parser.add_argument('--conf',
+                            dest='conf',
+                            help='configuration file')
         return parser
 
     def initialize_app(self, argv):
         self.LOG.debug('initialize_app')
-        self.rest_manager = rest.RestManager(self.options)
-        
+        self.conf = config.setup_config_settings(self.options)
+        self.rest_manager = rest.RestManager(self.conf, self.options)
 
     def prepare_to_run_command(self, cmd):
         self.LOG.debug('prepare_to_run_command %s', cmd.__class__.__name__)

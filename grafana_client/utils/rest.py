@@ -3,14 +3,27 @@ import json
 
 import requests
 
+from grafana_client.utils import url_parse
+
 
 class RestManager(object):
-    headers = {'Authorization': 'Bearer eyJrIjoiUlZjVkpHVUlrOGgyZE44UkVPMVNqb0JxbElaM2NEM3kiLCJuIjoiYWRtaW4iLCJpZCI6MX0=',
-               'Content-Type': 'application/json'}
+    headers = {'Content-Type': 'application/json'}
 
-    def __init__(self, cli_options=None):
+    def __init__(self, conf, cli_options=None):
+        self.conf = conf
         self.cli_options = cli_options
         self.session = requests.Session()
+        try:
+            self.base_url = conf.get('grafana_testapi', 'url')
+        except:
+            self.base_url = 'http://localhost:3000'
+
+        try:
+            self.authorization = conf.get('grafana', 'authorization')
+        except:
+            raise Exception('Grafana Authorization must be provided')
+
+        RestManager.headers.update({'Authorization': self.authorization})
 
     def get(self, url):
         return self._parse_response('Get',
@@ -36,8 +49,10 @@ class RestManager(object):
                                                   data=data,
                                                   headers=self.headers))
 
-    def _request(self, method, *args, **kwargs):
-        return getattr(self.session, method)(*args, **kwargs)
+    def _request(self, method, url, *args, **kwargs):
+        url = url_parse.path_join(self.base_url, url)
+
+        return getattr(self.session, method)(url, *args, **kwargs)
 
     def _raise_failure(self, op, response):
         raise Exception('{} failed: {}'.format(op, response.reason))
