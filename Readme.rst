@@ -3,8 +3,8 @@ Grafana-client
 
 A project used to manage Grafana dashboards based on YAML configuration
 
-YAML Schema
----------------
+YAML Specification
+---------------------
 
 The Grafana dashboard definitions are kept in any number of YAML files,
 in whatever way you would like to organize them. When you invoke grafana-client
