@@ -11,7 +11,7 @@ DEFAULT_CONF = """
 url = http://localhost:3000
 
 [grafana]
-authorization = Bearer eyJrIjoiUlZjVkpHVUlrOGgyZE44UkVPMVNqb0JxbElaM2NEM3kiLCJuIjoiYWRtaW4iLCJpZCI6MX0=
+authorization = 
 """
 
 

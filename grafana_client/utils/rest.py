@@ -23,7 +23,8 @@ class RestManager(object):
         except:
             raise Exception('Grafana Authorization must be provided')
 
-        RestManager.headers.update({'Authorization': self.authorization})
+        if self.authorization:
+            RestManager.headers.update({'Authorization': self.authorization})
 
     def get(self, url):
         return self._parse_response('Get',
