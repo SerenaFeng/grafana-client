@@ -1,7 +1,7 @@
 ---
 
-- template:
-    name: testdb
+- dashboard-template:
+    name: 'db-{label}'
     uid: '{uid}'
     title: '{label} Dashboard'
     tags: '{tags}'
@@ -19,3 +19,15 @@
           title: '{label}'
           height: '300px'
           datasource: '{datasource}'
+
+- dashboard:
+    name: directdb
+    uid: directdb
+    title: Directdb Dashboard
+    tags: [directdb]
+    rows:
+      - row_text:
+          title: directdb
+          height: 100px
+          span: 12
+          context: This is a direct defined dashboard example

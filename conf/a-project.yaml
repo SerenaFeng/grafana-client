@@ -1,11 +1,11 @@
 ---
 
 - project:
-    name: dbtest
+    name: adb
+    label: ADB
     description: This is dashboard test
-    objs:
-      - testdb:
-          label: DBTest
+    dashboards:
+      - 'db-{label}':
           tags: [yaml, testcase]
           datasource: fake
           uid: '{name}'

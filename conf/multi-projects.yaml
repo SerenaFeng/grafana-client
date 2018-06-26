@@ -1,0 +1,13 @@
+---
+
+- project:
+    name: somedbs
+    label:
+      - SomeDBs-1
+      - SomeDBs-2
+    description: This is dashboard test
+    dashboards:
+      - 'db-{label}':
+          tags: [somedbs]
+          datasource: fake
+          uid: '{label}'

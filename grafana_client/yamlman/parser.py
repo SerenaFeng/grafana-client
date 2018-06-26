@@ -75,7 +75,7 @@ class YamlParser(object):
         return self.data.get('dashboard', {}).get(name, None)
 
     def getTemplate(self, name):
-        return self.data.get('template', {}).get(name, None)
+        return self.data.get('dashboard-template', {}).get(name, None)
 
     def applyDefaults(self, data, override_dict=None):
         if override_dict is None:
@@ -107,7 +107,7 @@ class YamlParser(object):
         for project in self.data.get('project', {}).values():
             # use a set to check for duplicate job references in projects
             seen = set()
-            for objspec in project.get('objs', []):
+            for objspec in project.get('dashboards', []):
                 if isinstance(objspec, dict):
                     # Singleton dict containing dict of job-specific params
                     objname, objparams = next(iter(objspec.items()))
@@ -150,7 +150,7 @@ class YamlParser(object):
         dimensions = []
         template_name = template['name']
         # reject keys that are not useful during yaml expansion
-        for k in ['objs']:
+        for k in ['dashboards']:
             project.pop(k)
         for (k, v) in project.items():
             tmpk = '{{{0}}}'.format(k)
