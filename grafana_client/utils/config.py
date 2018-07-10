@@ -7,10 +7,8 @@ from six.moves import configparser
 
 LOG = logging.getLogger(__name__)
 DEFAULT_CONF = """
-[grafana_testapi]
-url = http://localhost:3000
-
 [grafana]
+url = http://localhost:3000
 authorization = 
 """
 

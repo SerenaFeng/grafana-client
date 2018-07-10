@@ -177,7 +177,7 @@ Create dashboard
 
 ``-p`` dashboard configuration path or filename
 
-``--conf`` configuration file, where grafana_testapi URL and Grafana access authorization
+``--conf`` configuration file, where Grafana URL and Grafana access authorization
 is configured. If not provided, Grafana-client will look for it in the following order:
 
 .. code-block:: Shell
@@ -190,8 +190,6 @@ If None of the above is provided, the following configuration will be leveraged:
 
 .. code-block:: INI
 
-  [grafana_testapi]
-  url = http://localhost:3000
-
   [grafana]
+  url = http://localhost:3000
   authorization =

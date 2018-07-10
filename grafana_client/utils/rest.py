@@ -14,7 +14,7 @@ class RestManager(object):
         self.cli_options = cli_options
         self.session = requests.Session()
         try:
-            self.base_url = conf.get('grafana_testapi', 'url')
+            self.base_url = conf.get('grafana', 'url')
         except:
             self.base_url = 'http://localhost:3000'
 
